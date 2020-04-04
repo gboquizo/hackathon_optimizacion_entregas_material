@@ -1,0 +1,16 @@
+{% extends "layouts/auth.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="col-12 col-md-6 mx-md-auto">
+        <img class="mb-4" src="https://getbootstrap.com/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h2>Tu portal de envío y recogida de material sanitario</h2>
+        <a href="{{ url_for('auth.login') }}" class="btn btn-purple btn-block rounded-pill mt-4">
+            Acceder
+        </a>
+        <a href="{{ url_for('auth.register') }}" class="btn btn-purple btn-block rounded-pill mt-4">
+            Registrarse
+        </a>
+    </div>
+</div>
+{% endblock content %}
