@@ -25,7 +25,6 @@
     "@fortawesome/fontawesome-free": "^5.13.0",
     "bootstrap": "^4.1.0",
     "cookieconsent": "^3.1.1",
-    "daemonite-material": "^4.1.1",
     "jquery": "^3.4.1",
     "popper.js": "^1.16.1",
     "sweetalert2": "^9.7.2"
