@@ -1,0 +1,11 @@
+@mixin facing($name) {
+  font-family: $name;
+  src: url('../../../resources/fonts/#{$name}.eot');
+  src: url('../../../resources/fonts/#{$name}.eot?#iefix') format('embedded-opentype'),
+    //url('../../../fonts/#{$name}.woff2') format('woff2'),
+  url('../../../resources/fonts/#{$name}.woff') format('woff'),
+  url('../../../resources/fonts/#{$name}.ttf') format('truetype'),
+  url('../../../resources/fonts/#{$name}.svg#ds-digitalnormal') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

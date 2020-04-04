@@ -1,7 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons&display=swap');
+@import "~@fortawesome/fontawesome-free/css/all.css";
 @import "~sweetalert2/src/sweetalert2";
-
 //@import '~bootstrap/scss/bootstrap';
+@import "main/fonts";
+@import "main/colors";
+
 @import '~daemonite-material/assets/scss/material';
 @import "~cookieconsent/build/cookieconsent.min.css";
 

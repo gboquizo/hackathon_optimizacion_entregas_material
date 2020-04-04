@@ -1,0 +1,19 @@
+$colors: (
+  'purple': #472268,
+  'lilac': #654CA0,
+  'blue': #93B0C7,
+  'gray': #BDC4C1,
+  'cream': #E6D5BA,
+);
+
+@each $name, $color in $colors {
+  .bg-#{$name} {
+    background-color: $color !important;
+  }
+  .text-#{$name}{
+    color: $color !important;
+  }
+  .border-#{$name}{
+    border-color: $color !important;
+  }
+}
