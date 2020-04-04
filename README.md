@@ -9,6 +9,7 @@
 This steps will be on Windows
 
 ```
+  git clone https://github.com/daniel8rc/hackathon_optimizacion_entregas_material.git
   py -3 -m venv venv
   venv\Scripts\activate
   pip install -r requirements.txt
