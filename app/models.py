@@ -81,6 +81,7 @@ class Product(db.Model):
 class StockDonor(db.Model):
     __tablename__ = 'stock_donor'
 
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     product = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
     donor = db.Column(db.Integer, db.ForeignKey('donor.id'), nullable=False)
     quantity = db.Column(db.Integer)
@@ -88,6 +89,7 @@ class StockDonor(db.Model):
 class RequestApplicant(db.Model):
     __tablename__ = 'request_applicant'
 
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     product = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
     applicant = db.Column(db.Integer, db.ForeignKey('applicant.id'), nullable=False)
     quantitiy = db.Column(db.Integer)
@@ -103,7 +105,10 @@ class Journey(db.Model):
     final_long = db.Column(db.Float)
     valoration = db.Column(db.Float)
     status = db.Column(db.Integer)
-    CheckConstraint('journey.status IN (1, 2, 3)')
+"""
+    table_args = (
+        CheckConstraint('status IN (1, 2, 3)', name='checkStatus'),{})
+"""
 
 class Package(db.Model):
     __tablename__ = 'package'
@@ -116,7 +121,6 @@ class Package(db.Model):
     ts_delivery = db.Column(db.DateTime, nullable=True)
     status = db.Column(db.Integer, default = 0)
     package_valoration = db.Column(db.Float, nullable=True)
-
 
 class PackageContent(db.Model):
     __tablename__ = 'package_content'
