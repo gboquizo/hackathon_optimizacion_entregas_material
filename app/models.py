@@ -8,6 +8,7 @@ import humanfriendly
 from werkzeug import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from app import db
+from sqlalchemy import CheckConstraint
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -104,11 +105,8 @@ class Journey(db.Model):
     final_lat = db.Column(db.Float)
     final_long = db.Column(db.Float)
     valoration = db.Column(db.Float)
-    status = db.Column(db.Integer)
-"""
-    table_args = (
-        CheckConstraint('status IN (1, 2, 3)', name='checkStatus'),{})
-"""
+    status = db.Column(db.Integer, CheckConstraint('status IN (1, 2, 3)'))
+
 
 class Package(db.Model):
     __tablename__ = 'package'
