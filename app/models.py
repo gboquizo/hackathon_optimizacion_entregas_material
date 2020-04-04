@@ -28,7 +28,7 @@ class Address(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     state = db.Column(db.String(100))
-    city = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    city = db.Column(db.String(100))
     postal_code = db.Column(db.String(100))
     street = db.Column(db.String(100))
     number = db.Column(db.String(10))
