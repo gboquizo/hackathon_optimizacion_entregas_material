@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 my-5">
+            <div class="card">
+                <div class="card-header">Upload file!</div>
+                <div class="card-body">
+					<form method="post" action="" enctype="multipart/form-data">
+                        <div class="text-center">
+                            <img class="mb-4" src="https://getbootstrap.com/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+                            <h1 class="h3 mb-3 font-weight-normal">Please upload a file</h1>
+							{% with messages = get_flashed_messages() %}
+							    {% if messages %}
+							  	    <ul class="text-danger list-inline">
+								        {% for message in messages %}
+								            <li>{{ message }}</li>
+								        {% endfor %}
+								    </ul>
+							    {% endif %}
+							{% endwith %}
+							<div class="form-group">
+								<label for="file">Please select a file</label>
+								<input name="file" type="file" class="form-control-file" id="file">
+							</div>
+							<input class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}
