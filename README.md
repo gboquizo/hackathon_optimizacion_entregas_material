@@ -18,6 +18,27 @@ This steps will be on Windows
   python main.py
 ```
 
+### Installing Linux
+
+This steps will be on Linux
+
+```
+  python3 -m venv venv
+
+  source venv/bin/activate
+
+  pip3 install -r requirements.txt
+
+  pipenv install
+
+  npm install
+
+  npm run development
+
+  python3 main.py
+```
+
+
 ## Running the tests
 
 ### Break down into end to end tests
