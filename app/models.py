@@ -64,80 +64,64 @@ class Dealer(db.Model):
     updated_at = db.Column(db.DateTime, nullable=True)
 
 class ProductType(db.Model):
-    __tablename__ = 'product_type'
+    tablename = 'product_type'
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(50), nullable=False)
+    description = db.Column(db.String(100))
 
 class Product(db.Model):
     __tablename__ = 'product'
-    DESCRIPCION
-    IMAGE_URL
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    product_type = db.Column(db.Integer, db.ForeignKey('product_type.id'), nullable=False)
+    description = db.Column(db.String(100), nullable=False)
+    image_url = db.Column(db.String(100))
 
 class StockDonor(db.Model):
     __tablename__ = 'stock_donor'
-    FOREIGNKEY PRODUCT
-    FOREIGN KEY Donor
-    INT CANTIDAD
+
+    product = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+    donor = db.Column(db.Integer, db.ForeignKey('donor.id'), nullable=False)
+    quantity = db.Column(db.Integer)
 
 class RequestApplicant(db.Model):
     __tablename__ = 'request_applicant'
-    FOREIGNKEY PRODUCT
-    FOREIGN KEY Applicant
-    INT CANTIDAD
+
+    product = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+    applicant = db.Column(db.Integer, db.ForeignKey('applicant.id'), nullable=False)
+    quantitiy = db.Column(db.Integer)
 
 class Journey(db.Model):
     __tablename__ = 'journey'
-    FOREIGN_KEY DEALER
-    latitude initial
-    longitude initial
-    latitude final
-    longitude final
-    status 0 waiting 1 active 2 finished
-    valoration journey
-
+    
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    dealer = db.Column(db.Integer, db.ForeignKey('dealer.id'), nullable=False)
+    initial_lat = db.Column(db.Float)
+    initial_long = db.Column(db.Float)
+    final_lat = db.Column(db.Float)
+    final_long = db.Column(db.Float)
+    valoration = db.Column(db.Float)
+    status = db.Column(db.Integer)
+    CheckConstraint('journey.status IN (1, 2, 3)')
 
 class Package(db.Model):
     __tablename__ = 'package'
-    FOREIGN_KEY JOURNEY
-    FOREIGN_KEY DONOR
-    FOREIGN_KEY APPLICANT
-    timestamp recogida
-    timestamp entrega
-    status 0 waiting 1 active 2 finished
-    valoration package(donor)
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    
+    id_journey = db.Column(db.Integer, db.ForeignKey('journey.id'), nullable=False)
+    id_donor = db.Column(db.Integer, db.ForeignKey('donor.id'), nullable=False)
+    id_applicant = db.Column(db.Integer, db.ForeignKey('applicant.id'), nullable=False)
+    ts_pickup = db.Column(db.DateTime, nullable=True)
+    ts_delivery = db.Column(db.DateTime, nullable=True)
+    status = db.Column(db.Integer, default = 0)
+    package_valoration = db.Column(db.Float, nullable=True)
+
+
 class PackageContent(db.Model):
     __tablename__ = 'package_content'
-    package id 23 23
-    product id 2 3
-    cantidad 2 1
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-
-
-"""     def __init__(self, filename):
-        self.name = filename
-        self.file = self.extract_file(filename)
-        self.hash = self.extract_hash()
-        self.created_at = datetime.datetime.now()
-        self.size = self.calculate_size()
-
-    def extract_file(self, filename):
-        directory = os.getenv('UPLOAD_FOLDER', 'uploads')
-        return os.path.join(directory, filename)
-
-    def extract_hash(self):
-        with open(self.file, "rb") as f:
-            return hashlib.sha256(f.read()).hexdigest()
-
-    def calculate_size(self):
-        try:
-            return humanfriendly.format_size(os.path.getsize(self.file))
-        except os.error:
-            print('There was a problem with the size of the file')
-
-    def __repr__(self):
-        return '<File {0}>'.format(self.name)
- """
+    package_id = db.Column(db.Integer, db.ForeignKey('package.id'), autoincrement=True)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+    quantity = db.Column(db.Integer, default = 0)
