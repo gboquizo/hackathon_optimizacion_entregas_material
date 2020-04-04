@@ -17,7 +17,7 @@ mix.js('resources/js/app.js', 'app/static/js/app.js')
   .options({
     processCssUrls: true,
       fileLoaderDirs: {
-         images: 'app/static/images',
-         fonts: 'app/static/fonts'
+         images: 'static/images',
+         fonts: 'static/fonts'
       }
   });
