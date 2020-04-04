@@ -28,7 +28,7 @@ class Address(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     state = db.Column(db.String(100))
-    city = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    city = db.Column(db.String(100))
     postal_code = db.Column(db.String(100))
     street = db.Column(db.String(100))
     number = db.Column(db.String(10))
@@ -74,7 +74,7 @@ class Product(db.Model):
     __tablename__ = 'product'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    product_type = db.Column(db.Integer, db.ForeignKey('product_type.id'), nullable=False)
+    product_type_id = db.Column(db.Integer, db.ForeignKey('product_type.id'), nullable=False)
     description = db.Column(db.String(100), nullable=False)
     image_url = db.Column(db.String(100))
 
@@ -82,23 +82,23 @@ class StockDonor(db.Model):
     __tablename__ = 'stock_donor'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    product = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
-    donor = db.Column(db.Integer, db.ForeignKey('donor.id'), nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+    donor_id = db.Column(db.Integer, db.ForeignKey('donor.id'), nullable=False)
     quantity = db.Column(db.Integer)
 
 class RequestApplicant(db.Model):
     __tablename__ = 'request_applicant'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    product = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
-    applicant = db.Column(db.Integer, db.ForeignKey('applicant.id'), nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+    applicant_id = db.Column(db.Integer, db.ForeignKey('applicant.id'), nullable=False)
     quantitiy = db.Column(db.Integer)
 
 class Journey(db.Model):
     __tablename__ = 'journey'
     
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    dealer = db.Column(db.Integer, db.ForeignKey('dealer.id'), nullable=False)
+    dealer_id = db.Column(db.Integer, db.ForeignKey('dealer.id'), nullable=False)
     initial_lat = db.Column(db.Float)
     initial_long = db.Column(db.Float)
     final_lat = db.Column(db.Float)
@@ -114,9 +114,9 @@ class Package(db.Model):
     __tablename__ = 'package'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    id_journey = db.Column(db.Integer, db.ForeignKey('journey.id'), nullable=False)
-    id_donor = db.Column(db.Integer, db.ForeignKey('donor.id'), nullable=False)
-    id_applicant = db.Column(db.Integer, db.ForeignKey('applicant.id'), nullable=False)
+    journey_id = db.Column(db.Integer, db.ForeignKey('journey.id'), nullable=False)
+    donor_id = db.Column(db.Integer, db.ForeignKey('donor.id'), nullable=False)
+    applicant_id = db.Column(db.Integer, db.ForeignKey('applicant.id'), nullable=False)
     ts_pickup = db.Column(db.DateTime, nullable=True)
     ts_delivery = db.Column(db.DateTime, nullable=True)
     status = db.Column(db.Integer, default = 0)
