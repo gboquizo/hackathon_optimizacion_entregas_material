@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html lang="es">
+{% include "includes/head.html" ignore missing %}
+<body class="bg-primary">
+    {% include "includes/nav.html" ignore missing %}
+    <section class="container">
+        {% block content %}{% endblock %}
+    </section>
+    <!-- fin wrapper -->
+    {% include "includes/footer.html" ignore missing %}
+    <script defer src="{{ url_for('static', filename='js/app.js') }}" type="text/javascript"></script>
+    {% block js %}{% endblock %}
+</body>
+</html>

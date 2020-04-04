@@ -1,0 +1,21 @@
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Inject CSRF for client/server interoperability via axios -->
+    <meta name="csrf-token" value="{{ csrf_token() }}">
+    <!-- Compiled styles -->
+    <link href="{{ url_for('static', filename='css/app.css') }}" rel="stylesheet" media="screen">
+    {% block page_styles %}{% endblock %}
+    <!-- Bootstrap CSS -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#5eb9d7" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='dist/img/favicon.png') }}" type="image/x-icon"/>
+    {% if title %}
+    <title>{{ title }} {{ config.APP_NAME }}</title>
+    {% else %}
+    <title>Welcome to {{ config.APP_NAME }}</title>
+    {% endif %}
+</head>

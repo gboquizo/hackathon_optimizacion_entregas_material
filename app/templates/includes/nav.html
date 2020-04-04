@@ -1,0 +1,55 @@
+<!-- Fixed navbar -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('manager.index') }}">{{ config.APP_NAME }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                {% if current_user.is_authenticated %}
+                <li class="nav-item {% if request.path == url_for('manager.index') %} active {% endif %}">
+                    <a class="nav-link" href="{{ url_for('manager.index') }}">
+                        Index <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item {% if request.path == url_for('manager.upload_file') %} active {% endif %}">
+                    <a class="nav-link" href="{{ url_for('manager.upload_file') }}">
+                        Upload <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item {% if request.path == url_for('manager.show') %} active {% endif %}">
+                    <a class="nav-link" href="{{ url_for('manager.show') }}">
+                        My files <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                {% if current_user.is_admin() %}
+                    <li class="nav-item {% if request.path == url_for('admin.index') %} active {% endif %}">
+                        <a class="nav-link" href="{{ url_for('admin.index') }}">
+                            Handle user files <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                {% endif %}
+                {% else %}
+                <li class="nav-item {% if request.path == url_for('auth.register') %} active {% endif %}">
+                    <a class="nav-link" href="{{ url_for('auth.register') }}">
+                        Register
+                    </a>
+                </li>
+                <li class="nav-item {% if request.path == url_for('auth.login') %} active {% endif %}">
+                    <a class="nav-link" href="{{ url_for('auth.login') }}">
+                        Login
+                    </a>
+                </li>
+                {% endif %}
+                <li class="ml-1">
+                    {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('auth.logout') }}" class="btn btn-primary my-2 my-sm-0">
+                        Logout
+                    </a>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
