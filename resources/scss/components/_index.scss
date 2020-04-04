@@ -1,35 +1,59 @@
-.masthead {
-  position: relative;
-  overflow: hidden;
-  padding-top: calc(7rem + 72px);
-  padding-bottom: 7rem;
-  background: linear-gradient(0deg, '#9c27b0' 0%, $white 100%);
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.background {
+  background: url('../../../resources/images/background.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: scroll;
   background-size: cover;
-  .masthead-content {
+}
+
+.overlayer {
+    height: 100%;
+    background-color: transparentize(map_get($colors, 'cream'), .1);
+}
+.masthead {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: calc(10rem + 72px);
+  padding-bottom: 7rem;
+  .content {
     z-index: 1;
     position: relative;
-    .masthead-heading {
-      font-size: 4rem;
+    h1 {
+      font-size: 5rem;
+      margin-bottom: 5%
     }
-    .masthead-subheading {
-      font-size: 2rem;
+    h2 {
+      font-size: 1.75rem;
+      margin-bottom: 5%
     }
+  }
+  .btn {
+    font-size: 1rem;
+    padding: 5px;
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .masthead {
     padding-top: calc(10rem + 55px);
     padding-bottom: 10rem;
-    .masthead-content {
-      .masthead-heading {
-        font-size: 6rem;
+    .content {
+      h1 {
+        font-size: 5rem;
+        margin-bottom: 5%;
       }
-      .masthead-subheading {
-        font-size: 4rem;
+      h2 {
+        font-size: 3rem;
+        margin-bottom: 10%;
+      }
+      .btn {
+         font-size: 1.5rem;
       }
     }
   }
