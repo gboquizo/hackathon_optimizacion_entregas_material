@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex align-items-center p-3 my-3 rounded box-shadow">
+    {% if current_user.is_authenticated %}
+        <h1 class="text-light">Hello, 'su' {{ current_user.username }}!</h1>
+    {% endif %}
+</div>
+<div class="my-3 p-3 bg-white rounded box-shadow table-responsive">
+    <h6 class="border-bottom border-gray pb-2 mb-0">All users and their files</h6>
+</div>
+{% endblock %}
