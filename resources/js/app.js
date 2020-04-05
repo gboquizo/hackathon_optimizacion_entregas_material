@@ -1,7 +1,7 @@
 try {
   window.swal = window.Swal = require('sweetalert2')
   window.$ = window.jQuery = require('jquery')
-  window.Manager = require('./Manager').default
+  window.L = window.jQuery = require('leaflet');
   require('bootstrap')
 
 } catch (e) {}
