@@ -34,8 +34,10 @@ def create_app():
     with app.app_context():
         from app.modules.auth import auth_bp
         from app.modules.admin import admin_bp
+        from app.modules.dealer import dealer_bp
         app.register_blueprint(auth_bp)
         app.register_blueprint(admin_bp)
+        app.register_blueprint(dealer_bp)
 
         # Initialize Global db
         db.create_all()

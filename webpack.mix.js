@@ -15,6 +15,7 @@ mix.webpackConfig({ resolve: { modules: [__dirname, 'node_modules', 'resources/j
 mix.js('resources/js/app.js', 'app/static/js/app.js')
   .sass('resources/scss/main.scss', 'app/static/css/app.css')
   .copyDirectory('resources/images', 'app/static/images')
+  .copyDirectory('resources/js/dealer/', 'app/static/js/dealer/')
   .options({
     processCssUrls: true,
       fileLoaderDirs: {

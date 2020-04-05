@@ -1,6 +1,7 @@
 try {
   window.swal = window.Swal = require('sweetalert2')
   window.$ = window.jQuery = require('jquery')
+  window.L = require('leaflet');
   require('bootstrap')
   require('cookieconsent')
   require('./others/cookieconsent')
