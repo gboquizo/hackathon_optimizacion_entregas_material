@@ -9,6 +9,8 @@
 These steps will be on Windows
 
 ```
+  Use the Del-lia.exe app to automatic generation of all the proyect in a custom folder, or:
+
   git clone https://github.com/daniel8rc/hackathon_optimizacion_entregas_material.git
   py -3 -m venv venv
   venv\Scripts\activate
