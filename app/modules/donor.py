@@ -2,15 +2,16 @@
 
 import os
 
-from app import db
-from app.models import User
+from app import db, ma
 from app.utils import upload_path, dd
 from flask import render_template, Blueprint, request, flash, redirect, send_file, jsonify, url_for
 from flask_login import login_required, current_user, login_user
 from werkzeug.utils import secure_filename
 from werkzeug.exceptions import abort
-from app.forms import RegisterForm
 
+from app.forms import RegisterForm
+from ..models import Address, Donor, User
+from ..schemas import AddressSchema, DonorSchema
 
 # Use modules for each logical domain
 donor_bp = Blueprint('donor', __name__)
@@ -24,11 +25,11 @@ def register():
     if request.method == 'POST' and register_form.validate_on_submit():
 
         """
-        existing_user = User.query.filter_by(email=register_form.email.data).first()
-
         # Register user
         call auth method
         
+        existing_user = User.query.filter_by(email=register_form.email.data).first()
+
         if existing_user is None:
             user = User(
                 email=request.form.get('email'),
@@ -43,10 +44,35 @@ def register():
         flash('A user already exists with that email address')
         return redirect(url_for('auth.register'))
         """
-        donor = Donor()
-        fk_user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-        fk_address_id = db.Column(db.Integer, db.ForeignKey('address.id'), nullable=False)
-        created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now)
-        updated_at = db.Column(db.DateTime, nullable=True)
+        json_data = request.get_json()
+        if not json_data:
+            return {"message": "No input data provided"}, 400
 
-    return render_template('auth/register.html', title='Create an Account | ', form=register_form)
+        # Register address
+        # Validate and deserialize input
+        try:
+            address_data = AddressSchema(json_data)
+        except ma.ValidationError as err:
+            print(err.messages)
+            return err.messages, 422
+
+        address = Address(address_data)
+        db.session.add(address)
+        db.session.commit()
+        id_address = AddressSchema().dump(Address.query.get(address.id))
+
+        # register donor
+        # Validate and deserialize input
+        try:
+            donor_data = DonorSchema(json_data)
+            donor_data['address'] = id_address
+        except ma.ValidationError as err:
+            print(err.messages)
+            return err.messages, 422
+
+        donor = Donor(donor_data)
+        db.session.add(donor)
+        db.session.commit()
+        id_donor = DonorSchema().dump(donor.query.get(donor.id))
+
+    return {"message": "Donor user registered.", "id": id_donor}, 200
