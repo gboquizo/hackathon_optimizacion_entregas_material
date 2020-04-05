@@ -1,25 +1,25 @@
 <!-- Fixed navbar -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="{{ url_for('auth.index') }}">{{ config.APP_NAME }}</a>
+        <a class="navbar-brand" href="{{ url_for('manager.index') }}">{{ config.APP_NAME }}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 {% if current_user.is_authenticated %}
-                <li class="nav-item {% if request.path == url_for('auth.index') %} active {% endif %}">
-                    <a class="nav-link" href="{{ url_for('auth.index') }}">
+                <li class="nav-item {% if request.path == url_for('manager.index') %} active {% endif %}">
+                    <a class="nav-link" href="{{ url_for('manager.index') }}">
                         Index <span class="sr-only">(current)</span>
                     </a>
                 </li>
-                <li class="nav-item {% if request.path == url_for('auth.upload_file') %} active {% endif %}">
-                    <a class="nav-link" href="{{ url_for('auth.upload_file') }}">
+                <li class="nav-item {% if request.path == url_for('manager.upload_file') %} active {% endif %}">
+                    <a class="nav-link" href="{{ url_for('manager.upload_file') }}">
                         Upload <span class="sr-only">(current)</span>
                     </a>
                 </li>
-                <li class="nav-item {% if request.path == url_for('auth.show') %} active {% endif %}">
-                    <a class="nav-link" href="{{ url_for('auth.show') }}">
+                <li class="nav-item {% if request.path == url_for('manager.show') %} active {% endif %}">
+                    <a class="nav-link" href="{{ url_for('manager.show') }}">
                         My files <span class="sr-only">(current)</span>
                     </a>
                 </li>
