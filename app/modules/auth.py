@@ -16,9 +16,6 @@ auth_bp = Blueprint('auth', __name__)
 @login_manager.unauthorized_handler
 def unauthorized():
     """Redirect unauthorized users to Login page."""
-    if request.path != url_for('manager.upload_file'):
-        flash('You must be logged in to view main page.')
-
     return redirect(url_for('auth.login'))
 
 
@@ -31,6 +28,10 @@ def load_user(user_id):
 
     return None
 
+@auth_bp.route('/index')
+@auth_bp.route('/')
+def index():
+    return render_template('auth/index.html', title='Index')
 
 # Route to register a user.
 @auth_bp.route('/register', methods=['GET', 'POST'])
@@ -50,7 +51,7 @@ def register():
             db.session.add(user)
             db.session.commit()
             login_user(user)
-            return redirect(url_for('manager.index'))
+            return redirect(url_for('auth.index'))
 
         flash('A user already exists with that email address')
         return redirect(url_for('auth.register'))
@@ -63,7 +64,7 @@ def register():
 def login():
     """ User login page."""
     if current_user.is_authenticated:
-        return redirect(url_for('manager.index'))
+        return redirect(url_for('auth.index'))
 
     login_form = LoginForm(request.form)
 
@@ -78,7 +79,7 @@ def login():
         next_page = request.args.get('next')
 
         if not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('manager.show')
+            next_page = url_for('auth.show')
 
         return redirect(next_page)
 
@@ -91,4 +92,4 @@ def login():
 def logout():
     """User logout logic."""
     logout_user()
-    return redirect(url_for('manager.index'))
+    return redirect(url_for('auth.index'))
