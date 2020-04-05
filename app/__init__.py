@@ -8,9 +8,11 @@ from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_wtf import CSRFProtect
+from flask_marshmallow import Marshmallow
 
 # Instantiate the extensions
 db = SQLAlchemy()
+ma = Marshmallow()
 csrf = CSRFProtect()
 login_manager = LoginManager()
 migrate = Migrate()
@@ -27,6 +29,7 @@ def create_app():
     # Set up extensions
     login_manager.init_app(app)
     db.init_app(app)
+    ma.init_app(app)
     csrf.init_app(app)
     toolbar.init_app(app)
     migrate.init_app(app, db)
@@ -36,10 +39,12 @@ def create_app():
         from app.modules.manager import manager_bp
         from app.modules.admin import admin_bp
         from app.modules.dealer import dealer_bp
+        from app.modules.donor import donor_bp
         app.register_blueprint(auth_bp)
         app.register_blueprint(manager_bp)
         app.register_blueprint(admin_bp)
         app.register_blueprint(dealer_bp)
+        app.register_blueprint(donor_bp)
 
         # Initialize Global db
         db.create_all()

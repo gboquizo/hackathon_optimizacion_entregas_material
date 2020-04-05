@@ -1,0 +1,17 @@
+{% extends "layouts/auth.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-10 col-sm-8 mx-auto">
+        <a href="{{ url_for('auth.login') }}" class="btn btn-lg btn-purple btn-block">
+            Acceder
+        </a>
+        <a href="{{ url_for('auth.register') }}" class="btn btn-lg btn-purple btn-block mt-4">
+            Registrarse
+        </a>
+    </div>
+</div>
+{% endblock content %}
+{% block h1 %}
+    Tu portal de envío y recogida de material sanitario
+{% endblock h1 %}
