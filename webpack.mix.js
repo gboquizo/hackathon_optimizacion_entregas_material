@@ -23,3 +23,4 @@ mix.js('resources/js/app.js', 'app/static/js/app.js')
          fonts: 'static/fonts'
       }
   });
+mix

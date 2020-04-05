@@ -39,6 +39,9 @@ These steps will be on Linux
   python3 main.py
 ```
 
+### BBDD
+
+![BBDDv1](mockups/BBDDv1.png)
 
 ## Running the tests
 

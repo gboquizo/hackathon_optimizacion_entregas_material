@@ -93,6 +93,35 @@ class StockDonor(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now)
     updated_at = db.Column(db.DateTime, nullable=True)
 
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'product_id': self.product_id,
+            'donor_id': self.donor_id,
+            'quantity': self.quantity,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
+        }
+
+    @classmethod
+    def create(self, product_id, donor_id, quantity):
+        new_stock = StockDonor(product_id=product_id, donor_id=donor_id, quantity=quantity)
+        new_stock.save()
+        return new_stock
+
+    def update(self):
+        self.updated_at = datetime.datetime.now()
+        self.save()
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
 class RequestApplicant(db.Model):
     __tablename__ = 'request_applicant'
 
