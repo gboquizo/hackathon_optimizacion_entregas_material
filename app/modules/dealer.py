@@ -3,8 +3,6 @@
 import os
 
 from app import db
-from app.models import User
-from app.utils import dd
 from flask import render_template, Blueprint, request, flash, redirect, send_file, jsonify
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
