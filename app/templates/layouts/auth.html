@@ -3,14 +3,14 @@
 {% include "includes/head.html" ignore missing %}
 <body class="background">
     <div class="overlayer">
-        <section class="container-fluid">
-            <div class="delia">
-                <div class="container content">
+        <div class="delia">
+            <div class="d-flex vh-100">
+                <div class="d-flex w-100 justify-content-center align-self-center">
                     <div class="row">
-                        <div class="col-sm-8 col-lg-6 mx-auto">
+                        <div class="col-10 col-sm-12 mx-auto">
                             <img class="mb-4"
-                                 src="{{ url_for ('static', filename='images/logo.png') }}"
-                                 alt="Logo de {{ config.APP_NAME }}">
+                                src="{{ url_for ('static', filename='images/logo.png') }}"
+                                alt="Logo de {{ config.APP_NAME }}">
                             <h1>{% block h1 %}{% endblock %}</h1>
                             {% block content %}{% endblock %}
                         </div>
