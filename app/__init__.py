@@ -21,7 +21,7 @@ def create_app():
     app = Flask(__name__)
 
     # Set config
-    app_settings = os.getenv('APP_SETTINGS', 'app.config.ProductionConfig')
+    app_settings = os.getenv('APP_SETTINGS', 'app.config.DevelopmentConfig')
     app.config.from_object(app_settings)
 
     # Set up extensions
@@ -35,9 +35,11 @@ def create_app():
         from app.modules.auth import auth_bp
         from app.modules.admin import admin_bp
         from app.modules.dealer import dealer_bp
+        from app.modules.donor import donor_bp
         app.register_blueprint(auth_bp)
         app.register_blueprint(admin_bp)
         app.register_blueprint(dealer_bp)
+        app.register_blueprint(donor_bp)
 
         # Initialize Global db
         db.create_all()
