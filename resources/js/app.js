@@ -1,10 +1,9 @@
 try {
   window.swal = window.Swal = require('sweetalert2')
   window.$ = window.jQuery = require('jquery')
-  window.L = require('leaflet');
+  window.L = window.jQuery = require('leaflet');
   require('bootstrap')
-  require('cookieconsent')
-  require('./others/cookieconsent')
+
 } catch (e) {}
 
 /**
@@ -33,7 +32,7 @@ if (token) {
 
 
 /**
- * Outdated browser...
+ * Outdated broswer...
  */
 if (navigator.userAgent.match(/Trident/g) || navigator.userAgent.match(/MSIE/g)) {
   window.location.href = 'http://outdatedbrowser.com/es'
