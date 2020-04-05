@@ -34,5 +34,5 @@ class TestingConfig(BaseConfig):
 class ProductionConfig(BaseConfig):
     """Production configuration."""
     BCRYPT_LOG_ROUNDS = 13
-    SQLALCHEMY_DATABASE_URI = 'postgresql://localhost/example'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:mysecretpassword@localhost/covid'
     WTF_CSRF_ENABLED = True
