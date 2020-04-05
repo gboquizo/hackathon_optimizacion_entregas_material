@@ -34,7 +34,7 @@ This steps will be on Linux
 
   npm install
 
-  npm run development
+  npm run development or npm run watch
 
   python3 main.py
 ```
