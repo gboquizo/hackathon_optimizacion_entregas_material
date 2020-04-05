@@ -22,7 +22,7 @@
                 <th scope="row">{{ user.id }}</th>
                 <th scope="row">{{ user.username }}</th>
                 <td>
-                    <a href="{{ url_for('manager.show', username=user.id) }}">
+                    <a href="{{ url_for('auth.show', username=user.id) }}">
                         <i class="material-icons">
                             remove_red_eye
                         </i>
