@@ -8,13 +8,23 @@ from flask import jsonify
 # Blueprint Configuration
 donor_bp = Blueprint('donor', __name__)
 
+@donor_bp.route('/api/v1/donor', methods=['GET'])
+def get_donors():
+    donors = [ donor.json() for donor in Donor.query.all() ]
+    return jsonify({'donors': donors })
+
+@donor_bp.route('/api/v1/donor/stock', methods=['GET'])
+def get_stocks():
+    stocks = [ stock.serialize for stock in StockDonor.query.all() ]
+    return jsonify({'stocks': stocks })
 
 @csrf.exempt
-@donor.route('/api/v1/donor/<id>/stock/<id_product>', methods=['POST'])
-def create_donor_stock(id, id_product):
+@donor_bp.route('/api/v1/donor/<id>/stock/', methods=['POST'])
+def create_donor_stock(id):
+    print ("hola")
     json = request.get_json(force=True)
     donor = Donor.query.filter_by(id=id).first()
-    product = Product.query.filter_by(id=id_product).first()
+    product = Product.query.filter_by(id=json['product_id']).first()
     if donor is None:
         return jsonify({'message': 'Donor does not exists'}), 404
     
@@ -25,13 +35,13 @@ def create_donor_stock(id, id_product):
 
     return jsonify({'stock': stock.serialize})
 
-@donor.route('/api/v1/donor/<id>/stock/', methods=['GET'])
+@donor_bp.route('/api/v1/donor/<id>/stock', methods=['GET'])
 def get_donor_stock(id):
-    donor_stock = [ stock.serialize() for stock in StockDonor.query.filter_by(donor_id=id).all() ]
+    donor_stock = [ stock.serialize for stock in StockDonor.query.filter_by(donor_id=id).all() ]
     return jsonify({'donor_stock': donor_stock })
 
 @csrf.exempt
-@donor.route('/api/v1/donor/stock/<id>', methods=['PUT'])
+@donor_bp.route('/api/v1/donor/stock/<id>', methods=['PUT'])
 def update_stock(id):
     stock = StockDonor.query.filter_by(id=id).first()
     json = request.get_json(force=True)
@@ -40,7 +50,7 @@ def update_stock(id):
     return jsonify({'stock': stock.serialize })
 
 @csrf.exempt
-@donor.route('/api/v1/donor/stock/<id>', methods=['DELETE'])
+@donor_bp.route('/api/v1/donor/stock/<id>', methods=['DELETE'])
 def delete_stock(id):
     stock = StockDonor.query.filter_by(id=id).first()
     if stock is None:
