@@ -8,14 +8,14 @@ from app import ma
 from .models import *
 
 
-class DonorSchema(ma.ModelSchema):
+class DonorSchema(ma.Schema):
 
     class Meta:
         model = Donor
         sqla_session = db.session
         fields = ('user', 'address', 'updated_at')
 
-class AddressSchema(ma.ModelSchema):
+class AddressSchema(ma.Schema):
 
     class Meta:
         model = Donor

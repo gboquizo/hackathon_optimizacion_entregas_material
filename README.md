@@ -6,7 +6,7 @@
 
 ### Installing
 
-This steps will be on Windows
+These steps will be on Windows
 
 ```
   git clone https://github.com/daniel8rc/hackathon_optimizacion_entregas_material.git
@@ -21,7 +21,7 @@ This steps will be on Windows
 
 ### Installing Linux
 
-This steps will be on Linux
+These steps will be on Linux
 
 ```
   python3 -m venv venv
@@ -47,6 +47,20 @@ This steps will be on Linux
 ### And coding style tests
 
 ## Deployment
+
+### Installing the database
+
+```
+flask db init
+flask db migrate
+flask db upgrade
+```
+
+### running the server
+
+```
+flask run
+```
 
 ## Built With
 
