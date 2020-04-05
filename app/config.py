@@ -33,6 +33,9 @@ class TestingConfig(BaseConfig):
 
 class ProductionConfig(BaseConfig):
     """Production configuration."""
+    DB_NAME = os.getenv('PSQL_DB_NAME', 'example')
+    DB_USER = os.getenv('PSQL_DB_USER', 'postgres')
+    DB_PASSWD = os.getenv('PSQL_DB_PASSWD', '')
     BCRYPT_LOG_ROUNDS = 13
-    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:mysecretpassword@localhost/covid'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://{0}:{1}@localhost/{2}'.format(DB_USER, DB_PASSWD, DB_NAME)
     WTF_CSRF_ENABLED = True
