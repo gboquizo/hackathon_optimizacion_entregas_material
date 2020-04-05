@@ -1,0 +1,5 @@
+*
+!.gitignore
+!checkIfExist.bat
+!pyvenv.cfg
+!pyvenv36.cfg
