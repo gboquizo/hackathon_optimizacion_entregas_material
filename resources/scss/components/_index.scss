@@ -21,36 +21,26 @@ html, body {
   text-align: center;
   position: relative;
   overflow: hidden;
-  padding-top: calc(10rem + 72px);
-  @include media(md) {
-    padding-top: calc(10rem + 55px);
-  }
 
   img {
     max-width: 100%;
     height: auto;
   }
 
-  .content {
-    z-index: 1;
-    position: relative;
-
-    h1 {
-      font-family: $titles-font;
-      @include font-size(32px);
-      margin-bottom: 5%;
-      @include media(sm) {
-        @include font-size(36px);
-      }
-      @include media(md) {
-        @include font-size(42px);
-        margin-bottom: 5%;
-      }
+  h1 {
+    font-family: $titles-font;
+    @include font-size(24px);
+    margin-bottom: 10%;
+    @include media(sm) {
+      @include font-size(36px);
+    }
+    @include media(md) {
+      @include font-size(42px);
     }
   }
 
   .btn {
-    @include font-size(22px);
+    @include font-size(16px);
     padding: 5px;
     border-radius: 13px;
     @include media(md) {
