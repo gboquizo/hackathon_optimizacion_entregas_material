@@ -21,7 +21,6 @@ def get_stocks():
 @csrf.exempt
 @donor_bp.route('/api/v1/donor/<id>/stock/', methods=['POST'])
 def create_donor_stock(id):
-    print ("hola")
     json = request.get_json(force=True)
     donor = Donor.query.filter_by(id=id).first()
     product = Product.query.filter_by(id=json['product_id']).first()
