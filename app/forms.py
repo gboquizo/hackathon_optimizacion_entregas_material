@@ -5,26 +5,26 @@ from wtforms.validators import DataRequired, Email, EqualTo, Length
 
 class LoginForm(FlaskForm):
     """User Login Form."""
-    email = StringField('Email', validators=[
-        Email('Please enter a valid email address.'),
-        DataRequired('Please enter a valid email address.')
+    email = StringField('Correo electrónico', validators=[
+        Email('Por favor, introduce un correo electrónico válido.'),
+        DataRequired('Por favor, introduce un correo.')
     ])
-    password = PasswordField('Password', validators=[DataRequired('Uhh, your password tho?')])
-    remember_me = BooleanField('Remember Me')
-    submit = SubmitField('Sign in')
+    password = PasswordField('Contraseña', validators=[DataRequired('Oh, ¿y la contraseña?')])
+    remember_me = BooleanField('Recuérdame')
+    submit = SubmitField('Entrar')
 
 
 class RegisterForm(FlaskForm):
     """User Register Form."""
     email = StringField('Email', validators=[
-        Email('Please enter a valid email address.'),
-        DataRequired('Please enter a valid email address.')
+        Email('Por favor, introduce un correo electrónico válido.'),
+        DataRequired('Por favor, introduce un correo.')
     ])
-    username = StringField('Username', validators=[DataRequired('Enter a fake name or something.')])
-    password = PasswordField('Password', validators=[
-        DataRequired('Please enter a password.'),
-        Length(min=8, message='Please select a stronger password'),
-        EqualTo('password_confirm', message='Password must match')
+    username = StringField('Nombre de usuario', validators=[DataRequired('¡Introduce un nombre de usuario!')])
+    password = PasswordField('Contraseña', validators=[
+        DataRequired('Por favor, introduzca una contraseña.'),
+        Length(min=8, message='La contraseña tiene que ser más fuerte. Al menos 8 caracteres.'),
+        EqualTo('password_confirm', message='Las contraseñas tienen que coincidir')
     ])
-    password_confirm = PasswordField('Confirm your Password')
-    submit = SubmitField('Register')
+    password_confirm = PasswordField('Confirma tu contraseña')
+    submit = SubmitField('Registrarme')

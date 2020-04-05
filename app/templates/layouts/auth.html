@@ -3,11 +3,17 @@
 {% include "includes/head.html" ignore missing %}
 <body class="background">
     <div class="overlayer">
-        <section class="container">
-            <div class="masthead">
-                <div class="content">
-                    <div class="container">
-                        {% block content %}{% endblock %}
+        <section class="container-fluid">
+            <div class="delia">
+                <div class="container content">
+                    <div class="row">
+                        <div class="col-sm-8 col-lg-6 mx-auto">
+                            <img class="mb-4"
+                                 src="{{ url_for ('static', filename='images/logo.png') }}"
+                                 alt="Logo de {{ config.APP_NAME }}">
+                            <h1>{% block h1 %}{% endblock %}</h1>
+                            {% block content %}{% endblock %}
+                        </div>
                     </div>
                 </div>
             </div>
