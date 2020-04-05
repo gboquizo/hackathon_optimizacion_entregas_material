@@ -23,7 +23,8 @@ def create_app():
     app = Flask(__name__)
 
     # Set config
-    app_settings = os.getenv('APP_SETTINGS', 'app.config.ProductionConfig')
+    #app_settings = os.getenv('APP_SETTINGS', 'app.config.ProductionConfig')
+    app_settings = os.getenv('APP_SETTINGS', 'app.config.DevelopmentConfig')
     app.config.from_object(app_settings)
 
     # Set up extensions
