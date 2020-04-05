@@ -9,6 +9,7 @@ Flask==1.1.1
 Flask-Bcrypt==0.7.1
 Flask-DebugToolbar==0.10.1
 Flask-Login==0.4.1
+flask-marshmallow==0.11.0
 Flask-Migrate==2.5.2
 Flask-SQLAlchemy==2.4.1
 Flask-WTF==0.14.2
@@ -18,6 +19,7 @@ itsdangerous==1.1.0
 Jinja2==2.11.1
 Mako==1.1.1
 MarkupSafe==1.1.1
+marshmallow==3.5.1
 mbstrdecoder==0.8.4
 pipenv==2018.11.26
 pycparser==2.19
