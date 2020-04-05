@@ -52,7 +52,7 @@ These steps will be on Linux
 
 ```
 flask db init
-flask db migrate
+flask db migrate -m "Initial migrate"
 flask db upgrade
 ```
 
